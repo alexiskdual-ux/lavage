@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavado Profesional de Autos | IA Detailing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-blue-800 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-car-side text-2xl text-yellow-300"></i>
+                <h1 class="text-2xl font-bold">IA<span class="text-yellow-300">Detailing</span></h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="hover:text-yellow-300 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-yellow-300 transition">Servicios</a>
+                <a href="#nosotros" class="hover:text-yellow-300 transition">Nosotros</a>
+                <a href="#testimonios" class="hover:text-yellow-300 transition">Testimonios</a>
+                <a href="#contacto" class="hover:text-yellow-300 transition">Contacto</a>
+            </nav>
+            <button class="md:hidden text-2xl" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-blue-900 w-full py-4 px-4" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#inicio" class="hover:text-yellow-300 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-yellow-300 transition">Servicios</a>
+                <a href="#nosotros" class="hover:text-yellow-300 transition">Nosotros</a>
+                <a href="#testimonios" class="hover:text-yellow-300 transition">Testimonios</a>
+                <a href="#contacto" class="hover:text-yellow-300 transition">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero h-screen flex items-center justify-center text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Lavado Profesional <span class="text-yellow-300">de Autos</span></h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Devolvemos el brillo a tu vehículo con productos ecológicos y técnicas profesionales</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Reserva Ahora</a>
+                <a href="#servicios" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Nuestros Servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Nuestros <span class="text-yellow-500">Servicios</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ofrecemos una variedad de servicios de lavado para mantener tu auto impecable</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-blue-700 flex items-center justify-center">
+                        <i class="fas fa-spray-can text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Lavado Básico</h3>
+                        <p class="text-gray-600 mb-4">Lavado exterior con champú especial, limpieza de vidrios y llantas, y secado con paños de microfibra.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 font-bold text-lg">10 €</span>
+                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-blue-700 flex items-center justify-center">
+                        <i class="fas fa-car text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Lavado Premium</h3>
+                        <p class="text-gray-600 mb-4">Incluye lavado básico más limpieza de interiores, aspirado completo, limpieza de tablero y aplicación de protector.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 font-bold text-lg">15 €</span>
+                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-blue-700 flex items-center justify-center">
+                        <i class="fas fa-sparkles text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">Detallado Completo</h3>
+                        <p class="text-gray-600 mb-4">Servicio completo que incluye pulido, encerado, limpieza de motor, tratamiento de plásticos y más.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 font-bold text-lg">20 €</span>
+                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Equipo de lavado de autos" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Sobre <span class="text-yellow-500">Nosotros</span></h2>
+                    <p class="text-gray-700 mb-4">En  Detailing nos apasiona devolverle el brillo original a tu vehículo. Con más de 10 años de experiencia en el mercado, hemos perfeccionado nuestras técnicas para ofrecer el mejor servicio de lavado.</p>
+                    <p class="text-gray-700 mb-6">Utilizamos productos ecológicos y de alta calidad que protegen la pintura de tu auto mientras cuidamos el medio ambiente. Nuestro equipo está altamente capacitado para tratar cada vehículo con el cuidado que merece.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Equipo Profesional</h4>
+                                <p class="text-gray-700">Personal capacitado y con amplia experiencia en el sector.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Productos Ecológicos</h4>
+                                <p class="text-gray-700">Utilizamos productos biodegradables que no dañan el medio ambiente.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-900">Satisfacción Garantizada</h4>
+                                <p class="text-gray-700">Si no quedas satisfecho, repetiremos el servicio sin costo adicional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Lo que dicen <span class="text-yellow-500">nuestros clientes</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Testimonios reales de clientes satisfechos con nuestro servicio</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Carlos Méndez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Llevo mi coche aquí cada semana y siempre queda impecable. El servicio premium vale cada euro. ¡Recomendado 100%!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Ana Rodríguez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Me encanta que usan productos ecológicos. Mi coche brilla como nuevo y además cuido el planeta. Excelente servicio."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Javier López</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"El detallado completo que me hicieron revivió mi coche de 7 años. Parece recién salido de la concesonario. Volveré pronto."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-16 bg-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contáctanos</h2>
+                <p class="max-w-2xl mx-auto">Reserva tu servicio o consulta por nuestros paquetes especiales</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nombre" class="block mb-2">Nombre Completo</label>
+                            <input type="text" id="nombre" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2">Correo Electrónico</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="tu@email.com">
+                        </div>
+                        <div>
+                            <label for="telefono" class="block mb-2">Teléfono</label>
+                            <input type="tel" id="telefono" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="+56 9 1234 5678">
+                        </div>
+                        <div>
+                            <label for="servicio" class="block mb-2">Servicio de Interés</label>
+                            <select id="servicio" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="basico">Lavado Básico</option>
+                                <option value="premium">Lavado Premium</option>
+                                <option value="detallado">Detallado Completo</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="mensaje" class="block mb-2">Mensaje</label>
+                            <textarea id="mensaje" rows="4" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tu mensaje..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-6 rounded-lg transition duration-300">Enviar Mensaje</button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-blue-800 rounded-lg p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-yellow-400">Información de Contacto</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-yellow-400 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold">Dirección</h4>
+                                    <p>A domicilio</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-yellow-400 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold">Teléfono</h4>
+<p>
+  <a href="https://wa.me/34603018265" target="_blank" class="text-white-600 hover:underline">
+    +34 603 01 82 65
+  </a>
+</p>
+
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-yellow-400 text-xl mt-1 mr-4"></i>
+                                <div>
+                                  <h4 class="font-bold">Email</h4>
+<p>
+  <a 
+    href="mailto:iadetailing33@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola,%20quiero%20más%20información."
+    onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=iadetailing33@gmail.com&su=Consulta%20desde%20la%20web&body=Hola,%20quiero%20más%20información.', '_blank'); return false;"
+    class="text-white-600 hover:underline"
+  >
+    iadetailing33@gmail.com
+  </a>
+</p>
+
+
+
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-yellow-400 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-bold">Horario de Atención</h4>
+                                    <p>Lunes a Viernes: 9:00 - 19:00 hrs</p>
+                                    <p>Sábados: 10:00 - 15:00 hrs</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Síguenos en redes sociales</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.instagram.com/ia_detailing33?igsh=NHY3aDdhZ212N2Fo&utm_source=qr" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://wa.me/34603018265"  class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-car-side text-2xl text-yellow-300"></i>
+                        <h2 class="text-2xl font-bold">IA<span class="text-yellow-300">Detailing</span></h2>
+                    </div>
+                    <p class="mt-2 text-blue-300">Lavado profesional que devuelve el brillo a tu auto</p>
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="mb-2">© 2025 IA Detailing. Todos los derechos reservados.</p>
+                    <div class="flex space-x-4 text-blue-300">
+                        <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
+                        <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-yellow-500 text-blue-900 rounded-full shadow-lg flex items-center justify-center text-xl opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
