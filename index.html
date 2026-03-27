@@ -3,429 +3,1067 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavado Profesional de Autos | IA Detailing</title>
+    <title>Extranjería Pro | Asesoría de Documentación en España</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
+        .btn-primary {
+            background: linear-gradient(135deg, #991b1b 0%, #7f1a1a 100%);
+            color: white;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-        
-        .testimonial-card {
-            transition: all 0.3s ease;
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
         }
-        
-        .testimonial-card:hover {
-            transform: scale(1.03);
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+            transform: translateY(-1px);
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        .input-field:focus {
+            border-color: #991b1b;
+            box-shadow: 0 0 0 3px rgba(153,27,27,0.1);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .nav-link {
+            transition: color 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #991b1b;
+        }
+        .price-card {
+            background: linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+            border: 2px solid #fee2e2;
+        }
+        .price-card:hover {
+            border-color: #991b1b;
+        }
+        .payment-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .step-active {
+            background: linear-gradient(135deg, #991b1b 0%, #7f1a1a 100%);
+            color: white;
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50">
-    <!-- Header/Navbar -->
-    <header class="bg-blue-800 text-white sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-car-side text-2xl text-yellow-300"></i>
-                <h1 class="text-2xl font-bold">IA<span class="text-yellow-300">Detailing</span></h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#inicio" class="hover:text-yellow-300 transition">Inicio</a>
-                <a href="#servicios" class="hover:text-yellow-300 transition">Servicios</a>
-                <a href="#nosotros" class="hover:text-yellow-300 transition">Nosotros</a>
-                <a href="#testimonios" class="hover:text-yellow-300 transition">Testimonios</a>
-                <a href="#contacto" class="hover:text-yellow-300 transition">Contacto</a>
-            </nav>
-            <button class="md:hidden text-2xl" id="menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-blue-900 w-full py-4 px-4" id="mobile-menu">
-            <div class="flex flex-col space-y-3">
-                <a href="#inicio" class="hover:text-yellow-300 transition">Inicio</a>
-                <a href="#servicios" class="hover:text-yellow-300 transition">Servicios</a>
-                <a href="#nosotros" class="hover:text-yellow-300 transition">Nosotros</a>
-                <a href="#testimonios" class="hover:text-yellow-300 transition">Testimonios</a>
-                <a href="#contacto" class="hover:text-yellow-300 transition">Contacto</a>
-            </div>
-        </div>
-    </header>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100">
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero h-screen flex items-center justify-center text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Lavado Profesional <span class="text-yellow-300">de Autos</span></h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Devolvemos el brillo a tu vehículo con productos ecológicos y técnicas profesionales</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Reserva Ahora</a>
-                <a href="#servicios" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Nuestros Servicios</a>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/34722380883" target="_blank" class="floating-whatsapp bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-xl sticky top-0 z-50 backdrop-blur-lg bg-white/95">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-passport text-3xl text-red-800"></i>
+                    <span class="text-2xl font-bold text-red-800">ExtranjeríaPro</span>
+                    <span class="text-xs bg-red-800 text-white px-2 py-1 rounded-full">Oficial</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" data-page="home" class="nav-link text-gray-700"><i class="fas fa-home mr-2"></i> Inicio</a>
+                    <a href="#" data-page="servicios" class="nav-link text-gray-700"><i class="fas fa-tags mr-2"></i> Servicios y Precios</a>
+                    <a href="#" data-page="citas" class="nav-link text-gray-700"><i class="fas fa-calendar-alt mr-2"></i> Reservar Cita</a>
+                    <a href="#" data-page="asesoria" class="nav-link text-gray-700"><i class="fas fa-graduation-cap mr-2"></i> Guías</a>
+                    <a href="#" data-page="faq" class="nav-link text-gray-700"><i class="fas fa-question-circle mr-2"></i> FAQ</a>
+                    <div id="authLinks" class="flex items-center space-x-3"></div>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#" data-page="home" class="nav-link block py-2 text-gray-700"><i class="fas fa-home mr-2"></i> Inicio</a>
+                <a href="#" data-page="servicios" class="nav-link block py-2 text-gray-700"><i class="fas fa-tags mr-2"></i> Servicios y Precios</a>
+                <a href="#" data-page="citas" class="nav-link block py-2 text-gray-700"><i class="fas fa-calendar-alt mr-2"></i> Reservar Cita</a>
+                <a href="#" data-page="asesoria" class="nav-link block py-2 text-gray-700"><i class="fas fa-graduation-cap mr-2"></i> Guías</a>
+                <a href="#" data-page="faq" class="nav-link block py-2 text-gray-700"><i class="fas fa-question-circle mr-2"></i> FAQ</a>
+                <div id="mobileAuthLinks" class="pt-2 border-t border-gray-200"></div>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Services Section -->
-    <section id="servicios" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Nuestros <span class="text-yellow-500">Servicios</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Ofrecemos una variedad de servicios de lavado para mantener tu auto impecable</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
-                    <div class="h-48 bg-blue-700 flex items-center justify-center">
-                        <i class="fas fa-spray-can text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-900 mb-3">Lavado Básico</h3>
-                        <p class="text-gray-600 mb-4">Lavado exterior con champú especial, limpieza de vidrios y llantas, y secado con paños de microfibra.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 font-bold text-lg">10 €</span>
-                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
-                    <div class="h-48 bg-blue-700 flex items-center justify-center">
-                        <i class="fas fa-car text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-900 mb-3">Lavado Premium</h3>
-                        <p class="text-gray-600 mb-4">Incluye lavado básico más limpieza de interiores, aspirado completo, limpieza de tablero y aplicación de protector.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 font-bold text-lg">15 €</span>
-                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-lg transition duration-300">
-                    <div class="h-48 bg-blue-700 flex items-center justify-center">
-                        <i class="fas fa-sparkles text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-blue-900 mb-3">Detallado Completo</h3>
-                        <p class="text-gray-600 mb-4">Servicio completo que incluye pulido, encerado, limpieza de motor, tratamiento de plásticos y más.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 font-bold text-lg">20 €</span>
-                            <button class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full transition">Más Info</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="nosotros" class="py-16 bg-blue-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Equipo de lavado de autos" class="rounded-lg shadow-xl w-full">
-                </div>
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Sobre <span class="text-yellow-500">Nosotros</span></h2>
-                    <p class="text-gray-700 mb-4">En  Detailing nos apasiona devolverle el brillo original a tu vehículo. Con más de 10 años de experiencia en el mercado, hemos perfeccionado nuestras técnicas para ofrecer el mejor servicio de lavado.</p>
-                    <p class="text-gray-700 mb-6">Utilizamos productos ecológicos y de alta calidad que protegen la pintura de tu auto mientras cuidamos el medio ambiente. Nuestro equipo está altamente capacitado para tratar cada vehículo con el cuidado que merece.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
-                            <div>
-                                <h4 class="font-bold text-blue-900">Equipo Profesional</h4>
-                                <p class="text-gray-700">Personal capacitado y con amplia experiencia en el sector.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
-                            <div>
-                                <h4 class="font-bold text-blue-900">Productos Ecológicos</h4>
-                                <p class="text-gray-700">Utilizamos productos biodegradables que no dañan el medio ambiente.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-yellow-500 text-xl mt-1 mr-3"></i>
-                            <div>
-                                <h4 class="font-bold text-blue-900">Satisfacción Garantizada</h4>
-                                <p class="text-gray-700">Si no quedas satisfecho, repetiremos el servicio sin costo adicional.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonios" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Lo que dicen <span class="text-yellow-500">nuestros clientes</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Testimonios reales de clientes satisfechos con nuestro servicio</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-blue-700 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-blue-900">Carlos Méndez</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"Llevo mi coche aquí cada semana y siempre queda impecable. El servicio premium vale cada euro. ¡Recomendado 100%!"</p>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-blue-700 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-blue-900">Ana Rodríguez</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"Me encanta que usan productos ecológicos. Mi coche brilla como nuevo y además cuido el planeta. Excelente servicio."</p>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card bg-blue-50 rounded-lg p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-blue-700 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-blue-900">Javier López</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"El detallado completo que me hicieron revivió mi coche de 7 años. Parece recién salido de la concesonario. Volveré pronto."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contacto" class="py-16 bg-blue-900 text-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contáctanos</h2>
-                <p class="max-w-2xl mx-auto">Reserva tu servicio o consulta por nuestros paquetes especiales</p>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-1/2">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="nombre" class="block mb-2">Nombre Completo</label>
-                            <input type="text" id="nombre" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tu nombre">
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2">Correo Electrónico</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="tu@email.com">
-                        </div>
-                        <div>
-                            <label for="telefono" class="block mb-2">Teléfono</label>
-                            <input type="tel" id="telefono" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="+56 9 1234 5678">
-                        </div>
-                        <div>
-                            <label for="servicio" class="block mb-2">Servicio de Interés</label>
-                            <select id="servicio" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="basico">Lavado Básico</option>
-                                <option value="premium">Lavado Premium</option>
-                                <option value="detallado">Detallado Completo</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="mensaje" class="block mb-2">Mensaje</label>
-                            <textarea id="mensaje" rows="4" class="w-full px-4 py-3 rounded-lg bg-blue-800 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Tu mensaje..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-6 rounded-lg transition duration-300">Enviar Mensaje</button>
-                    </form>
-                </div>
-                
-                <div class="lg:w-1/2">
-                    <div class="bg-blue-800 rounded-lg p-8 h-full">
-                        <h3 class="text-2xl font-bold mb-6 text-yellow-400">Información de Contacto</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-yellow-400 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold">Dirección</h4>
-                                    <p>A domicilio</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt text-yellow-400 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold">Teléfono</h4>
-<p>
-  <a href="https://wa.me/34603018265" target="_blank" class="text-white-600 hover:underline">
-    +34 603 01 82 65
-  </a>
-</p>
-
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-yellow-400 text-xl mt-1 mr-4"></i>
-                                <div>
-                                  <h4 class="font-bold">Email</h4>
-<p>
-  <a 
-    href="mailto:iadetailing33@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola,%20quiero%20más%20información."
-    onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=iadetailing33@gmail.com&su=Consulta%20desde%20la%20web&body=Hola,%20quiero%20más%20información.', '_blank'); return false;"
-    class="text-white-600 hover:underline"
-  >
-    iadetailing33@gmail.com
-  </a>
-</p>
-
-
-
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-clock text-yellow-400 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold">Horario de Atención</h4>
-                                    <p>Lunes a Viernes: 9:00 - 19:00 hrs</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-bold mb-4">Síguenos en redes sociales</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://www.instagram.com/ia_detailing33?igsh=NHY3aDdhZ212N2Fo&utm_source=qr" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://wa.me/34603018265"  class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main id="appContent" class="container mx-auto px-4 py-12 min-h-screen"></main>
 
     <!-- Footer -->
-    <footer class="bg-blue-950 text-white py-8">
+    <footer class="bg-gray-900 text-white py-16 mt-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-car-side text-2xl text-yellow-300"></i>
-                        <h2 class="text-2xl font-bold">IA<span class="text-yellow-300">Detailing</span></h2>
+            <div class="grid md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-passport text-2xl text-red-400"></i>
+                        <h3 class="text-xl font-bold">ExtranjeríaPro</h3>
                     </div>
-                    <p class="mt-2 text-blue-300">Lavado profesional que devuelve el brillo a tu auto</p>
-                </div>
-                <div class="flex flex-col items-center md:items-end">
-                    <p class="mb-2">© 2025 IA Detailing. Todos los derechos reservados.</p>
-                    <div class="flex space-x-4 text-blue-300">
-                        <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
-                        <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+                    <p class="text-gray-400">Asesoría profesional en trámites de extranjería en España. Más de 10,000 clientes satisfechos.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Servicios Destacados</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-id-card mr-2 text-red-400"></i> Obtención de NIE</li>
+                        <li><i class="fas fa-exchange-alt mr-2 text-red-400"></i> Renovación TIE</li>
+                        <li><i class="fas fa-gavel mr-2 text-red-400"></i> Visados y Permisos</li>
+                        <li><i class="fas fa-flag-checkered mr-2 text-red-400"></i> Nacionalidad Española</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" data-page="home" class="hover:text-white transition">Inicio</a></li>
+                        <li><a href="#" data-page="servicios" class="hover:text-white transition">Servicios</a></li>
+                        <li><a href="#" data-page="citas" class="hover:text-white transition">Reservar cita</a></li>
+                        <li><a href="#" data-page="asesoria" class="hover:text-white transition">Guías gratuitas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Contacto</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i> info@extranjeriapro.es</li>
+                        <li><i class="fas fa-phone mr-2"></i> +34 722 380 883</li>
+                        <li><i class="fas fa-clock mr-2"></i> Lun-Vie 9:00-20:00</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Madrid, España</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm mt-12 pt-8 border-t border-gray-800">
+                &copy; 2025 ExtranjeríaPro - Asesoría Legal Especializada. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-yellow-500 text-blue-900 rounded-full shadow-lg flex items-center justify-center text-xl opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Back to Top Button
-        const backToTopBtn = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'invisible');
-                backToTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopBtn.classList.remove('opacity-100', 'visible');
-                backToTopBtn.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Data storage
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+        let payments = JSON.parse(localStorage.getItem('payments')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+        // Complete price list with details
+        const services = {
+            'Solicitud NIE': { price: 49.99, duration: '24-48h', includes: 'Asesoría, formularios, cita previa' },
+            'Renovación TIE': { price: 59.99, duration: '48-72h', includes: 'Gestión completa, seguimiento' },
+            'Solicitud TIE inicial': { price: 69.99, duration: '72h', includes: 'Todo el proceso, asesoría personalizada' },
+            'Visado de estudio': { price: 89.99, duration: '5-7 días', includes: 'Preparación documentación, seguimiento' },
+            'Visado de trabajo': { price: 99.99, duration: '7-10 días', includes: 'Asesoría laboral, documentación' },
+            'Nacionalidad española': { price: 149.99, duration: '3 meses', includes: 'Preparación CCSE y DELE, asesoría legal' },
+            'Empadronamiento': { price: 29.99, duration: '24h', includes: 'Cita ayuntamiento, documentación' },
+            'Certificado de residencia': { price: 39.99, duration: '24-48h', includes: 'Trámite completo, entrega digital' },
+            'Arraigo social': { price: 79.99, duration: '15 días', includes: 'Estudio de caso, documentación' },
+            'Reagrupación familiar': { price: 119.99, duration: '1 mes', includes: 'Asesoría completa, seguimiento' },
+            'Tarjeta familiar UE': { price: 89.99, duration: '1 semana', includes: 'Gestión completa' },
+            'Permiso de residencia': { price: 129.99, duration: '2 semanas', includes: 'Asesoría especializada' }
+        };
+
+        // Initialize admin user
+        if (!users.find(u => u.email === 'admin@extranjeria.es')) {
+            users.push({
+                id: Date.now(),
+                nombre: 'Administrador',
+                email: 'admin@extranjeria.es',
+                password: 'admin123',
+                telefono: '722380883',
+                nacionalidad: 'Española',
+                role: 'admin'
             });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        }
+
+        // Initialize demo user
+        if (!users.find(u => u.email === 'demo@usuario.com')) {
+            users.push({
+                id: Date.now() + 1,
+                nombre: 'Carlos López',
+                email: 'demo@usuario.com',
+                password: 'demo123',
+                telefono: '600000000',
+                nacionalidad: 'Colombiana',
+                role: 'user'
+            });
+        }
+
+        localStorage.setItem('users', JSON.stringify(users));
+
+        // Helper functions
+        function saveUsers() { localStorage.setItem('users', JSON.stringify(users)); }
+        function saveAppointments() { localStorage.setItem('appointments', JSON.stringify(appointments)); }
+        function savePayments() { localStorage.setItem('payments', JSON.stringify(payments)); }
+        function saveCurrentUser() { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            return new Date(dateStr).toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(price);
+        }
+
+        function showToast(message, type = 'success') {
+            Swal.fire({
+                text: message,
+                icon: type,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                background: '#fff',
+                iconColor: type === 'success' ? '#10b981' : '#ef4444'
+            });
+        }
+
+        // Auth functions
+        function login(email, password) {
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = { ...user };
+                delete currentUser.password;
+                saveCurrentUser();
+                renderApp();
+                showToast(`¡Bienvenido ${user.nombre}!`, 'success');
+                return true;
+            }
+            showToast('Credenciales incorrectas', 'error');
+            return false;
+        }
+
+        function loginWithGoogle() {
+            Swal.fire({
+                title: 'Demo Google Login',
+                text: 'Iniciando sesión con cuenta demo',
+                icon: 'info',
+                confirmButtonText: 'Continuar'
+            }).then(() => {
+                login('demo@usuario.com', 'demo123');
+            });
+        }
+
+        function register(userData) {
+            if (users.find(u => u.email === userData.email)) {
+                showToast('Email ya registrado', 'error');
+                return false;
+            }
+            const newUser = {
+                id: Date.now(),
+                ...userData,
+                role: 'user',
+                fechaRegistro: new Date().toISOString()
+            };
+            users.push(newUser);
+            saveUsers();
+            currentUser = { ...newUser };
+            delete currentUser.password;
+            saveCurrentUser();
+            renderApp();
+            showToast('¡Registro exitoso! Bienvenido', 'success');
+            return true;
+        }
+
+        function logout() {
+            currentUser = null;
+            saveCurrentUser();
+            renderApp();
+            showToast('Sesión cerrada correctamente', 'info');
+        }
+
+        // Advanced payment function with card UI
+        async function processPayment(tramite, amount, appointmentId) {
+            const service = services[tramite];
+            
+            const result = await Swal.fire({
+                title: '<div style="font-size: 24px;">💳 Pago Seguro</div>',
+                html: `
+                    <div style="text-align: left; padding: 10px;">
+                        <div class="payment-card text-white p-4 rounded-lg mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <p class="text-sm">Total a pagar</p>
+                            <p class="text-3xl font-bold">${formatPrice(amount)}</p>
+                            <p class="text-xs mt-2">${tramite}</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Número de tarjeta</label>
+                            <div class="relative">
+                                <i class="fas fa-credit-card absolute left-3 top-3 text-gray-400"></i>
+                                <input type="text" id="cardNumber" class="input-field pl-10" placeholder="4242 4242 4242 4242" maxlength="19">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Fecha expiración</label>
+                                <input type="text" id="cardExpiry" class="input-field" placeholder="MM/YY">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">CVV</label>
+                                <input type="password" id="cardCvv" class="input-field" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Nombre titular</label>
+                            <input type="text" id="cardName" class="input-field" placeholder="Como aparece en la tarjeta">
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 text-center mt-3">
+                            <i class="fas fa-lock mr-1"></i> Pago 100% seguro
+                        </div>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: '<i class="fas fa-check-circle mr-2"></i>Pagar ahora',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#10b981',
+                cancelButtonColor: '#ef4444',
+                width: '500px',
+                preConfirm: () => {
+                    const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                    const cardExpiry = document.getElementById('cardExpiry').value;
+                    const cardCvv = document.getElementById('cardCvv').value;
+                    const cardName = document.getElementById('cardName').value;
                     
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
+                    if (!cardNumber || cardNumber.length < 15) {
+                        Swal.showValidationMessage('Número de tarjeta inválido');
+                        return false;
+                    }
+                    if (!cardExpiry || !cardExpiry.match(/^\d{2}\/\d{2}$/)) {
+                        Swal.showValidationMessage('Fecha de expiración inválida (MM/YY)');
+                        return false;
+                    }
+                    if (!cardCvv || cardCvv.length < 3) {
+                        Swal.showValidationMessage('CVV inválido');
+                        return false;
+                    }
+                    if (!cardName) {
+                        Swal.showValidationMessage('Nombre del titular requerido');
+                        return false;
+                    }
+                    return { cardNumber, cardExpiry, cardCvv, cardName };
+                }
+            });
+
+            if (result.isConfirmed) {
+                // Simulate payment processing
+                await Swal.fire({
+                    title: 'Procesando pago...',
+                    text: 'Por favor espera',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        setTimeout(() => Swal.close(), 1500);
+                    }
+                });
+                
+                const payment = {
+                    id: 'pay_' + Date.now(),
+                    citaId: appointmentId,
+                    tramite: tramite,
+                    monto: amount,
+                    fecha: new Date().toISOString(),
+                    usuarioId: currentUser.id,
+                    ultimosDigitos: result.value.cardNumber.slice(-4),
+                    tarjeta: `**** **** **** ${result.value.cardNumber.slice(-4)}`
+                };
+                payments.push(payment);
+                savePayments();
+                
+                await Swal.fire({
+                    title: '¡Pago exitoso!',
+                    html: `
+                        <div class="text-center">
+                            <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
+                            <p class="text-lg font-bold">${formatPrice(amount)}</p>
+                            <p class="text-sm text-gray-600">Tarjeta terminada en ${result.value.cardNumber.slice(-4)}</p>
+                        </div>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                });
+                return true;
+            }
+            return false;
+        }
+
+        // Appointment functions
+        async function createAppointment(appointment) {
+            const amount = services[appointment.tipoTramite]?.price || 49.99;
+            const tempId = Date.now();
+            
+            const confirm = await Swal.fire({
+                title: 'Confirmar Reserva',
+                html: `
+                    <div class="text-left">
+                        <div class="bg-blue-50 p-4 rounded-lg mb-3">
+                            <p class="font-bold">${appointment.tipoTramite}</p>
+                            <p class="text-sm text-gray-600">${services[appointment.tipoTramite]?.includes}</p>
+                        </div>
+                        <p><i class="fas fa-calendar mr-2 text-red-600"></i> <strong>Fecha:</strong> ${formatDate(appointment.fecha)}</p>
+                        <p><i class="fas fa-clock mr-2 text-red-600"></i> <strong>Hora:</strong> ${appointment.hora}</p>
+                        <p><i class="fas fa-user mr-2 text-red-600"></i> <strong>Asesor:</strong> Especialista asignado</p>
+                        <hr class="my-3">
+                        <p class="text-xl font-bold text-center text-red-800">Total: ${formatPrice(amount)}</p>
+                    </div>
+                `,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: '<i class="fas fa-credit-card mr-2"></i>Ir a pagar',
+                cancelButtonText: 'Cancelar'
+            });
+            
+            if (!confirm.isConfirmed) return null;
+            
+            const paid = await processPayment(appointment.tipoTramite, amount, tempId);
+            
+            if (paid) {
+                const newApp = {
+                    id: tempId,
+                    ...appointment,
+                    estado: 'confirmada',
+                    fechaCreacion: new Date().toISOString(),
+                    montoPagado: amount
+                };
+                appointments.push(newApp);
+                saveAppointments();
+                
+                await Swal.fire({
+                    title: '¡Cita Confirmada!',
+                    html: `
+                        <div class="text-center">
+                            <i class="fas fa-check-circle text-green-500 text-5xl mb-3"></i>
+                            <p>Tu cita ha sido reservada exitosamente</p>
+                            <p class="text-sm text-gray-600 mt-2">Te hemos enviado los detalles por email</p>
+                        </div>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Ver mis citas'
+                });
+                return newApp;
+            }
+            return null;
+        }
+
+        function cancelAppointment(id) {
+            Swal.fire({
+                title: '¿Cancelar cita?',
+                text: 'No hay reembolso por cancelaciones',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, cancelar',
+                cancelButtonText: 'No'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const app = appointments.find(a => a.id == id);
+                    if (app) {
+                        app.estado = 'cancelada';
+                        saveAppointments();
+                        showToast('Cita cancelada', 'info');
+                        renderApp();
                     }
                 }
             });
+        }
+
+        function updateAppointmentStatus(id, status) {
+            const app = appointments.find(a => a.id == id);
+            if (app) {
+                app.estado = status;
+                saveAppointments();
+                showToast(`Estado actualizado a ${status}`, 'success');
+                renderApp();
+            }
+        }
+
+        // Render pages
+        function renderHome() {
+            const stats = [
+                { number: '10,000+', label: 'Clientes satisfechos', icon: 'users' },
+                { number: '98%', label: 'Éxito en trámites', icon: 'chart-line' },
+                { number: '24/7', label: 'Soporte continuo', icon: 'headset' },
+                { number: '15+', label: 'Años de experiencia', icon: 'award' }
+            ];
+            
+            return `
+                <div class="animate-fadeInUp">
+                    <div class="bg-gradient-to-br from-red-900 to-red-800 text-white rounded-2xl p-12 mb-12 text-center">
+                        <h1 class="text-5xl font-bold mb-4">Tu Documentación en España</h1>
+                        <p class="text-xl mb-4">Simplificada, Rápida y Profesional</p>
+                        <p class="text-lg mb-8 max-w-2xl mx-auto">Asesoría experta en NIE, TIE, visados, nacionalidad y más. Más de 10,000 trámites gestionados con éxito.</p>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="#" data-page="citas" class="bg-white text-red-800 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition transform hover:scale-105 inline-block">Reservar Cita <i class="fas fa-arrow-right ml-2"></i></a>
+                            <a href="#" data-page="servicios" class="bg-transparent border-2 border-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-red-800 transition">Ver Servicios</a>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-4 gap-6 mb-12">
+                        ${stats.map(stat => `
+                            <div class="card text-center">
+                                <i class="fas fa-${stat.icon} text-4xl text-red-600 mb-3"></i>
+                                <p class="text-3xl font-bold text-gray-800">${stat.number}</p>
+                                <p class="text-gray-600">${stat.label}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="card">
+                            <h3 class="text-2xl font-bold mb-4">¿Por qué elegirnos?</h3>
+                            <ul class="space-y-3">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Asesores especializados en extranjería</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Seguimiento personalizado 24/7</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Pago seguro con tarjeta</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Garantía de satisfacción</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-2xl font-bold mb-4">Testimonios</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-red-600 pl-4">
+                                    <p class="italic">"Excelente servicio, me ayudaron con mi NIE en menos de 48 horas. Muy profesionales."</p>
+                                    <p class="font-bold mt-2">- María González</p>
+                                </div>
+                                <div class="border-l-4 border-red-600 pl-4">
+                                    <p class="italic">"Gracias a ExtranjeríaPro pude obtener mi nacionalidad sin complicaciones. Recomendados 100%."</p>
+                                    <p class="font-bold mt-2">- Juan Carlos Rodríguez</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderServicios() {
+            return `
+                <div class="animate-fadeInUp">
+                    <h1 class="text-4xl font-bold mb-4 text-center">Servicios y Precios</h1>
+                    <p class="text-center text-gray-600 mb-12">Elige el servicio que necesitas y reserva tu cita de forma rápida y segura</p>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${Object.entries(services).map(([name, data]) => `
+                            <div class="price-card card hover:shadow-2xl transition cursor-pointer" onclick="document.querySelector('[data-page=\\'citas\\']').click(); localStorage.setItem('selectedService', '${name}')">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">${name}</h3>
+                                    <span class="badge text-white px-3 py-1 rounded-full text-sm">Popular</span>
+                                </div>
+                                <p class="text-3xl font-bold text-red-800 mb-2">${formatPrice(data.price)}</p>
+                                <p class="text-sm text-gray-500 mb-3"><i class="fas fa-clock mr-1"></i> Plazo: ${data.duration}</p>
+                                <p class="text-gray-600 text-sm mb-4">${data.includes}</p>
+                                <button onclick="event.stopPropagation(); document.querySelector('[data-page=\\'citas\\']').click(); localStorage.setItem('selectedService', '${name}')" class="btn-primary w-full text-center text-sm py-2">Seleccionar</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderLogin() {
+            return `
+                <div class="max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-8 animate-fadeInUp">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-passport text-5xl text-red-800 mb-3"></i>
+                        <h2 class="text-2xl font-bold">Bienvenido</h2>
+                        <p class="text-gray-600">Inicia sesión en tu cuenta</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="loginEmail" placeholder="tu@email.com" class="input-field" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold mb-2">Contraseña</label>
+                            <input type="password" id="loginPassword" placeholder="••••••••" class="input-field" required>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">Iniciar Sesión</button>
+                    </form>
+                    <button id="googleLoginBtn" class="btn-secondary w-full mt-3"><i class="fab fa-google mr-2"></i> Continuar con Google</button>
+                    <p class="text-center mt-6">¿No tienes cuenta? <a href="#" data-page="register" class="text-red-800 font-semibold hover:underline">Regístrate gratis</a></p>
+                    <p class="text-xs text-gray-500 text-center mt-4 pt-4 border-t">Demo: admin@extranjeria.es / admin123</p>
+                </div>
+            `;
+        }
+
+        function renderRegister() {
+            return `
+                <div class="max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-8 animate-fadeInUp">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-user-plus text-5xl text-red-800 mb-3"></i>
+                        <h2 class="text-2xl font-bold">Crear Cuenta</h2>
+                        <p class="text-gray-600">Regístrate para acceder a todos los servicios</p>
+                    </div>
+                    <form id="registerForm">
+                        <input type="text" id="regNombre" placeholder="Nombre completo" class="input-field mb-3" required>
+                        <input type="email" id="regEmail" placeholder="Email" class="input-field mb-3" required>
+                        <input type="password" id="regPassword" placeholder="Contraseña (mínimo 6 caracteres)" class="input-field mb-3" required>
+                        <input type="tel" id="regTelefono" placeholder="Teléfono" class="input-field mb-3">
+                        <input type="text" id="regNacionalidad" placeholder="Nacionalidad" class="input-field mb-4">
+                        <button type="submit" class="btn-primary w-full">Registrarse</button>
+                    </form>
+                    <p class="text-center mt-6">¿Ya tienes cuenta? <a href="#" data-page="login" class="text-red-800 font-semibold hover:underline">Inicia sesión</a></p>
+                </div>
+            `;
+        }
+
+        function renderDashboard() {
+            if (!currentUser) return '<div class="text-center py-12">Acceso restringido. <a href="#" data-page="login" class="text-red-800 font-semibold">Inicia sesión</a></div>';
+            
+            if (currentUser.role === 'admin') {
+                const totalRevenue = payments.reduce((sum, p) => sum + p.monto, 0);
+                return `
+                    <div class="animate-fadeInUp">
+                        <h1 class="text-3xl font-bold mb-6">Panel de Administración</h1>
+                        <div class="grid md:grid-cols-4 gap-4 mb-8">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-xl"><i class="fas fa-calendar text-2xl"></i><p class="text-2xl font-bold mt-2">${appointments.length}</p><p>Citas Totales</p></div>
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-xl"><i class="fas fa-euro-sign text-2xl"></i><p class="text-2xl font-bold mt-2">${formatPrice(totalRevenue)}</p><p>Recaudado</p></div>
+                            <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-xl"><i class="fas fa-users text-2xl"></i><p class="text-2xl font-bold mt-2">${users.length}</p><p>Usuarios</p></div>
+                            <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-xl"><i class="fas fa-chart-line text-2xl"></i><p class="text-2xl font-bold mt-2">${payments.length}</p><p>Transacciones</p></div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow overflow-x-auto p-6">
+                            <h2 class="text-xl font-bold mb-4">Todas las citas</h2>
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr><th class="p-3">Usuario</th><th>Trámite</th><th>Fecha</th><th>Monto</th><th>Estado</th><th>Acción</th></tr>
+                                </thead>
+                                <tbody>
+                                    ${appointments.map(app => {
+                                        const user = users.find(u => u.id === app.usuarioId);
+                                        return `<tr class="border-t"><td class="p-3">${user?.nombre || app.nombre}</td><td class="p-3">${app.tipoTramite}</td><td class="p-3">${formatDate(app.fecha)} ${app.hora}</td><td class="p-3">${formatPrice(app.montoPagado || services[app.tipoTramite]?.price || 0)}</td><td class="p-3"><span class="px-2 py-1 rounded-full text-xs ${app.estado === 'confirmada' ? 'bg-green-200' : app.estado === 'pendiente' ? 'bg-yellow-200' : 'bg-red-200'}">${app.estado}</span></td><td class="p-3"><select onchange="updateAppointmentStatus(${app.id}, this.value)" class="border rounded p-1"><option ${app.estado === 'pendiente' ? 'selected' : ''}>pendiente</option><option ${app.estado === 'confirmada' ? 'selected' : ''}>confirmada</option><option ${app.estado === 'completada' ? 'selected' : ''}>completada</option><option ${app.estado === 'cancelada' ? 'selected' : ''}>cancelada</option></select></td></tr>`;
+                                    }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const userApps = appointments.filter(a => a.usuarioId === currentUser.id);
+            const userPayments = payments.filter(p => p.usuarioId === currentUser.id);
+            const totalSpent = userPayments.reduce((sum, p) => sum + p.monto, 0);
+            
+            return `
+                <div class="animate-fadeInUp">
+                    <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
+                        <div>
+                            <h1 class="text-3xl font-bold">Mis Citas</h1>
+                            <p class="text-gray-600">Bienvenido, ${currentUser.nombre}</p>
+                        </div>
+                        <a href="#" data-page="citas" class="btn-primary"><i class="fas fa-plus mr-2"></i> Nueva Cita</a>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gradient-to-br from-red-800 to-red-900 text-white p-4 rounded-xl"><i class="fas fa-calendar text-2xl"></i><p class="text-2xl font-bold mt-2">${userApps.length}</p><p>Citas Realizadas</p></div>
+                        <div class="bg-gradient-to-br from-green-600 to-green-700 text-white p-4 rounded-xl"><i class="fas fa-euro-sign text-2xl"></i><p class="text-2xl font-bold mt-2">${formatPrice(totalSpent)}</p><p>Total Invertido</p></div>
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-xl"><i class="fas fa-check-circle text-2xl"></i><p class="text-2xl font-bold mt-2">${userApps.filter(a => a.estado === 'confirmada').length}</p><p>Citas Confirmadas</p></div>
+                    </div>
+                    ${userApps.length === 0 ? 
+                        `<div class="bg-white rounded-xl shadow p-12 text-center">
+                            <i class="fas fa-calendar-alt text-6xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500 text-lg">No tienes citas reservadas</p>
+                            <a href="#" data-page="citas" class="btn-primary mt-4 inline-block">Reservar mi primera cita</a>
+                        </div>` : 
+                        userApps.map(app => `
+                            <div class="bg-white rounded-xl shadow p-5 mb-4 flex justify-between items-center hover:shadow-lg transition">
+                                <div>
+                                    <i class="fas fa-file-alt text-red-800 text-xl mr-3"></i>
+                                    <strong class="text-lg">${app.tipoTramite}</strong>
+                                    <p class="text-sm text-gray-600 mt-1"><i class="fas fa-calendar mr-1"></i> ${formatDate(app.fecha)} a las ${app.hora}</p>
+                                    <p class="text-sm font-bold text-red-800 mt-1">${formatPrice(app.montoPagado || services[app.tipoTramite]?.price || 0)}</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="px-3 py-1 rounded-full text-sm ${app.estado === 'confirmada' ? 'bg-green-100 text-green-800' : app.estado === 'pendiente' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">${app.estado.toUpperCase()}</span>
+                                    ${app.estado !== 'cancelada' && app.estado !== 'completada' ? `<button onclick="cancelAppointment(${app.id})" class="ml-3 text-red-600 hover:text-red-800"><i class="fas fa-times-circle text-xl"></i></button>` : ''}
+                                </div>
+                            </div>
+                        `).join('')
+                    }
+                </div>
+            `;
+        }
+
+        function renderCitas() {
+            if (!currentUser) {
+                return `<div class="text-center py-12"><p class="mb-4 text-lg">Debes iniciar sesión para reservar</p><a href="#" data-page="login" class="btn-primary">Iniciar Sesión</a></div>`;
+            }
+            return `
+                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeInUp">
+                    <div class="bg-gradient-to-r from-red-800 to-red-900 text-white p-6">
+                        <h2 class="text-2xl font-bold">Reservar Cita</h2>
+                        <p>Completa los pasos para agendar tu trámite</p>
+                    </div>
+                    <div id="citaSteps" class="p-6"></div>
+                </div>
+            `;
+        }
+
+        function renderAsesoria() {
+            return `
+                <div class="animate-fadeInUp">
+                    <h1 class="text-4xl font-bold mb-4 text-center">Guías Paso a Paso</h1>
+                    <p class="text-center text-gray-600 mb-12">Aprende cómo realizar tus trámites de forma correcta</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="card hover:shadow-xl transition">
+                            <i class="fas fa-id-card text-4xl text-red-800 mb-3"></i>
+                            <h3 class="text-xl font-bold mb-2">📄 Solicitud de NIE</h3>
+                            <p class="text-gray-600 mb-3">Pasos: Cita previa, formulario EX-15, tasa 790-012, pasaporte, justificante de pago.</p>
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <p class="text-sm font-bold">📌 Requisitos:</p>
+                                <ul class="text-sm list-disc list-inside"><li>Pasaporte vigente</li><li>Motivo de solicitud</li><li>Tasa pagada</li></ul>
+                            </div>
+                        </div>
+                        <div class="card hover:shadow-xl transition">
+                            <i class="fas fa-exchange-alt text-4xl text-red-800 mb-3"></i>
+                            <h3 class="text-xl font-bold mb-2">🔄 Renovación de TIE</h3>
+                            <p class="text-gray-600 mb-3">Cita previa, formulario EX-00, tasa, pasaporte, TIE caducado, documentos que acrediten continuidad.</p>
+                        </div>
+                        <div class="card hover:shadow-xl transition">
+                            <i class="fas fa-graduation-cap text-4xl text-red-800 mb-3"></i>
+                            <h3 class="text-xl font-bold mb-2">🎓 Visado de estudios</h3>
+                            <p class="text-gray-600 mb-3">Solicitud consulado, aceptación centro, medios económicos, seguro médico, antecedentes penales.</p>
+                        </div>
+                        <div class="card hover:shadow-xl transition">
+                            <i class="fas fa-flag-checkered text-4xl text-red-800 mb-3"></i>
+                            <h3 class="text-xl font-bold mb-2">🇪🇸 Nacionalidad española</h3>
+                            <p class="text-gray-600 mb-3">Residencia 10 años, pruebas CCSE y DELE, jura de nacionalidad, certificados de nacimiento y antecedentes.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFaq() {
+            const faqs = [
+                { q: "¿Cuánto tarda el proceso de NIE?", a: "El mismo día si llevas toda la documentación correcta. Nosotros te ayudamos a prepararlo todo." },
+                { q: "¿Los pagos son reembolsables?", a: "No, una vez confirmada la cita y realizado el pago, no hay reembolso. Pero puedes reprogramar hasta 48h antes." },
+                { q: "¿Puedo modificar mi cita?", a: "Sí, desde tu panel de usuario puedes cancelar y reservar una nueva fecha hasta 48 horas antes." },
+                { q: "¿Necesito cita para empadronarme?", a: "Sí, en la mayoría de ayuntamientos es obligatorio. Nosotros gestionamos la cita por ti." },
+                { q: "¿Qué métodos de pago aceptan?", a: "Aceptamos todas las tarjetas de crédito/débito (Visa, Mastercard, American Express) con pago 100% seguro." },
+                { q: "¿Ofrecen asesoría en otros idiomas?", a: "Sí, tenemos asesores que hablan inglés, portugués, francés y árabe." }
+            ];
+            
+            return `
+                <div class="max-w-4xl mx-auto animate-fadeInUp">
+                    <h1 class="text-4xl font-bold mb-4 text-center">Preguntas Frecuentes</h1>
+                    <p class="text-center text-gray-600 mb-12">Resolvemos tus dudas sobre los trámites de extranjería</p>
+                    <div class="space-y-4">
+                        ${faqs.map(faq => `
+                            <div class="card hover:shadow-lg transition cursor-pointer" onclick="this.classList.toggle('border-red-600')">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-lg">❓ ${faq.q}</strong>
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                </div>
+                                <p class="mt-3 text-gray-600 hidden answer">${faq.a}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCitaForm() {
+            const stepDiv = document.getElementById('citaSteps');
+            if (!stepDiv) return;
+            
+            let step = 1;
+            let selectedTramite = localStorage.getItem('selectedService') || '';
+            let selectedDate = '';
+            let selectedTime = '';
+            const tramites = Object.keys(services);
+            const horas = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30'];
+            
+            function render() {
+                if (step === 1) {
+                    stepDiv.innerHTML = `
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">1</span>
+                                <span class="h-1 w-16 bg-gray-300"></span>
+                                <span class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">2</span>
+                                <span class="h-1 w-16 bg-gray-300"></span>
+                                <span class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Selecciona el tipo de trámite</h3>
+                            ${tramites.map(t => `
+                                <label class="flex justify-between items-center p-4 border-2 rounded-xl mb-3 cursor-pointer hover:border-red-400 transition ${selectedTramite === t ? 'border-red-600 bg-red-50' : ''}">
+                                    <span><input type="radio" name="tramite" value="${t}" class="mr-3" ${selectedTramite === t ? 'checked' : ''}> 
+                                    <div><strong>${t}</strong><br><small class="text-gray-500">${services[t].includes}</small></div></span>
+                                    <span class="text-red-800 font-bold text-xl">${formatPrice(services[t].price)}</span>
+                                </label>
+                            `).join('')}
+                            <button id="next1" class="btn-primary w-full mt-6">Continuar <i class="fas fa-arrow-right ml-2"></i></button>
+                        </div>
+                    `;
+                    document.getElementById('next1')?.addEventListener('click', () => {
+                        const selected = document.querySelector('input[name="tramite"]:checked');
+                        if (!selected) { showToast('Selecciona un trámite', 'error'); return; }
+                        selectedTramite = selected.value;
+                        localStorage.removeItem('selectedService');
+                        step = 2;
+                        render();
+                    });
+                } else if (step === 2) {
+                    stepDiv.innerHTML = `
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">✓</span>
+                                <span class="h-1 w-16 bg-red-600"></span>
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">2</span>
+                                <span class="h-1 w-16 bg-gray-300"></span>
+                                <span class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Elige fecha y hora</h3>
+                            <input type="date" id="fechaCita" min="${new Date().toISOString().split('T')[0]}" class="input-field mb-4">
+                            <p class="font-bold mb-2">Horas disponibles:</p>
+                            <div class="grid grid-cols-3 gap-2 mb-6" id="horasContainer">${horas.map(h => `<button type="button" class="hora-btn py-3 border-2 rounded-xl font-semibold hover:border-red-600 transition">${h}</button>`).join('')}</div>
+                            <div class="flex gap-3"><button id="back2" class="btn-secondary flex-1"><i class="fas fa-arrow-left mr-2"></i>Atrás</button><button id="next2" class="btn-primary flex-1">Continuar <i class="fas fa-arrow-right ml-2"></i></button></div>
+                        </div>
+                    `;
+                    document.getElementById('back2')?.addEventListener('click', () => { step = 1; render(); });
+                    document.getElementById('next2')?.addEventListener('click', () => {
+                        const fecha = document.getElementById('fechaCita').value;
+                        const horaSel = document.querySelector('.hora-btn.bg-red-600');
+                        if (!fecha || !horaSel) { showToast('Selecciona fecha y hora', 'error'); return; }
+                        selectedDate = fecha;
+                        selectedTime = horaSel.innerText;
+                        step = 3;
+                        render();
+                    });
+                    document.querySelectorAll('.hora-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            document.querySelectorAll('.hora-btn').forEach(b => b.classList.remove('bg-red-600', 'text-white', 'border-red-600'));
+                            this.classList.add('bg-red-600', 'text-white', 'border-red-600');
+                        });
+                    });
+                } else if (step === 3) {
+                    stepDiv.innerHTML = `
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">✓</span>
+                                <span class="h-1 w-16 bg-red-600"></span>
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">✓</span>
+                                <span class="h-1 w-16 bg-red-600"></span>
+                                <span class="step-active w-8 h-8 rounded-full flex items-center justify-center">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Confirma tus datos</h3>
+                            <input type="text" id="citaNombre" value="${currentUser.nombre || ''}" class="input-field mb-3" placeholder="Nombre completo">
+                            <input type="email" id="citaEmail" value="${currentUser.email || ''}" class="input-field mb-3" placeholder="Email">
+                            <input type="tel" id="citaTelefono" value="${currentUser.telefono || ''}" class="input-field mb-3" placeholder="Teléfono">
+                            <input type="text" id="citaNacionalidad" value="${currentUser.nacionalidad || ''}" class="input-field mb-4" placeholder="Nacionalidad">
+                            <div class="bg-gradient-to-r from-red-50 to-red-100 p-4 rounded-xl mb-6">
+                                <p class="font-bold">📋 Resumen de tu cita</p>
+                                <p class="text-sm mt-2"><strong>Trámite:</strong> ${selectedTramite}</p>
+                                <p class="text-sm"><strong>Fecha:</strong> ${formatDate(selectedDate)} a las ${selectedTime}</p>
+                                <p class="text-2xl font-bold text-red-800 mt-2">${formatPrice(services[selectedTramite].price)}</p>
+                            </div>
+                            <div class="flex gap-3"><button id="back3" class="btn-secondary flex-1"><i class="fas fa-arrow-left mr-2"></i>Atrás</button><button id="submit" class="btn-primary flex-1"><i class="fas fa-credit-card mr-2"></i>Pagar y Confirmar</button></div>
+                        </div>
+                    `;
+                    document.getElementById('back3')?.addEventListener('click', () => { step = 2; render(); });
+                    document.getElementById('submit')?.addEventListener('click', async () => {
+                        const nombre = document.getElementById('citaNombre').value;
+                        const email = document.getElementById('citaEmail').value;
+                        const telefono = document.getElementById('citaTelefono').value;
+                        const nacionalidad = document.getElementById('citaNacionalidad').value;
+                        if (!nombre || !email || !telefono || !nacionalidad) { showToast('Completa todos los campos', 'error'); return; }
+                        await createAppointment({
+                            usuarioId: currentUser.id, nombre, email, telefono, nacionalidad,
+                            tipoTramite: selectedTramite, fecha: selectedDate, hora: selectedTime
+                        });
+                        renderApp();
+                        navigate('dashboard');
+                    });
+                }
+            }
+            render();
+        }
+
+        function navigate(page) {
+            window.location.hash = page;
+        }
+
+        function updateAuthUI() {
+            const authLinks = document.getElementById('authLinks');
+            const mobileAuthLinks = document.getElementById('mobileAuthLinks');
+            
+            if (currentUser) {
+                const userHtml = `
+                    <span class="text-gray-700"><i class="fas fa-user-circle mr-1"></i> ${currentUser.nombre}</span>
+                    <button onclick="logout()" class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition"><i class="fas fa-sign-out-alt mr-1"></i> Salir</button>
+                `;
+                const mobileUserHtml = `
+                    <div class="flex justify-between items-center pt-2">
+                        <span class="text-gray-700"><i class="fas fa-user-circle mr-1"></i> ${currentUser.nombre}</span>
+                        <button onclick="logout()" class="bg-red-800 text-white px-4 py-2 rounded-lg text-sm">Salir</button>
+                    </div>
+                `;
+                if (authLinks) authLinks.innerHTML = userHtml;
+                if (mobileAuthLinks) mobileAuthLinks.innerHTML = mobileUserHtml;
+            } else {
+                const loginHtml = `<a href="#" data-page="login" class="btn-primary py-2 px-5 text-sm">Iniciar Sesión</a>`;
+                const mobileLoginHtml = `<a href="#" data-page="login" class="block w-full text-center btn-primary py-2">Iniciar Sesión</a>`;
+                if (authLinks) authLinks.innerHTML = loginHtml;
+                if (mobileAuthLinks) mobileAuthLinks.innerHTML = mobileLoginHtml;
+            }
+        }
+
+        function renderApp() {
+            const hash = window.location.hash.substring(1) || 'home';
+            const pageFns = {
+                home: renderHome,
+                servicios: renderServicios,
+                login: renderLogin,
+                register: renderRegister,
+                dashboard: renderDashboard,
+                citas: renderCitas,
+                asesoria: renderAsesoria,
+                faq: renderFaq
+            };
+            
+            const content = document.getElementById('appContent');
+            if (pageFns[hash]) {
+                content.innerHTML = pageFns[hash]();
+            } else {
+                content.innerHTML = pageFns.home();
+            }
+            
+            updateAuthUI();
+            
+            if (hash === 'login') {
+                const loginForm = document.getElementById('loginForm');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const email = document.getElementById('loginEmail').value;
+                        const password = document.getElementById('loginPassword').value;
+                        if (login(email, password)) {
+                            navigate('dashboard');
+                        }
+                    });
+                }
+                const googleBtn = document.getElementById('googleLoginBtn');
+                if (googleBtn) googleBtn.addEventListener('click', loginWithGoogle);
+            }
+            
+            if (hash === 'register') {
+                const registerForm = document.getElementById('registerForm');
+                if (registerForm) {
+                    registerForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const userData = {
+                            nombre: document.getElementById('regNombre').value,
+                            email: document.getElementById('regEmail').value,
+                            password: document.getElementById('regPassword').value,
+                            telefono: document.getElementById('regTelefono').value,
+                            nacionalidad: document.getElementById('regNacionalidad').value
+                        };
+                        if (register(userData)) navigate('dashboard');
+                    });
+                }
+            }
+            
+            if (hash === 'citas' && currentUser) renderCitaForm();
+            
+            // FAQ accordion functionality
+            if (hash === 'faq') {
+                setTimeout(() => {
+                    document.querySelectorAll('.card').forEach(card => {
+                        card.addEventListener('click', function() {
+                            const answer = this.querySelector('.answer');
+                            if (answer) answer.classList.toggle('hidden');
+                        });
+                    });
+                }, 100);
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('[data-page]');
+            if (link) {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                if (page === 'dashboard' && !currentUser) navigate('login');
+                else navigate(page);
+            }
         });
+
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        window.addEventListener('hashchange', () => renderApp());
+        renderApp();
     </script>
 </body>
 </html>
